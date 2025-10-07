@@ -1,0 +1,91 @@
+---
+// Definiamo le "props", ovvero i dati che ogni pagina passerà a questo componente.
+// Includiamo anche dei valori di default per sicurezza.
+export interface Props {
+  title: string;
+  description: string;
+  imageUrl?: string; // L'immagine è opzionale
+  liveUrl?: string; // Anche il link al sito live è opzionale
+  repoUrl?: string; // E il link alla repo
+  tags?: string[]; // Una lista di tecnologie usate
+}
+
+const { 
+  title, 
+  description, 
+  imageUrl, 
+  liveUrl, 
+  repoUrl, 
+  tags = [] 
+} = Astro.props;
+---
+
+<section class="w-full min-h-screen py-20 text-gray-100 flex items-center justify-center">
+  <div class="container mx-auto px-6 max-w-4xl">
+    <div class="bg-card-dark rounded-xl shadow-2xl p-8 md:p-12 backdrop-blur-lg border border-white/10 animate-fadeIn">
+      
+      <!-- Immagine Principale (opzionale) -->
+      {imageUrl && (
+        <img 
+          src={imageUrl} 
+          alt={`Screenshot del progetto ${title}`} 
+          class="w-full h-auto rounded-lg mb-8 shadow-lg" 
+        />
+      )}
+
+      <!-- Titolo e Tags -->
+      <div class="text-center mb-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">
+          {title}
+        </h1>
+        {tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 justify-center">
+            {tags.map(tag => (
+              <span class="bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Descrizione -->
+      <p class="text-lg text-gray-300 leading-relaxed mb-8 text-center">
+        {description}
+      </p>
+
+      <!-- Pulsanti Call to Action (opzionali) -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        {liveUrl && (
+          <a href={liveUrl} target="_blank" rel="noopener noreferrer" class="btn-primary text-center">
+            Visita il Sito
+          </a>
+        )}
+        {repoUrl && (
+          <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary text-center">
+            Vedi il Codice
+          </a>
+        )}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Aggiungiamo uno stile per il pulsante secondario, se non esiste già */
+  .btn-secondary {
+    display: inline-block;
+    padding: var(--btn-padding);
+    background-color: transparent;
+    color: var(--color-primary);
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: 2px solid var(--color-primary);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+  }
+</style>
