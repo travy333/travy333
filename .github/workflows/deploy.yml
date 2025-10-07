@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Esegui il workflow ogni volta che fai un push sul branch `site`
+  push:
+    branches:
+      - site
+
+  # Permette di eseguire questo workflow manualmente dalla tab Actions su GitHub
+  workflow_dispatch:
+
+# Permessi necessari per il token di deploy
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository
+        uses: actions/checkout@v4
+
+      - name: Install, build, and upload your site
+        uses: withastro/action@v2
+        # Non c'è bisogno di configurazione aggiuntiva perché i tuoi
+        # file sono nella root del progetto.
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

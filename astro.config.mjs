@@ -1,11 +1,12 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
-
-import tailwindcss from '@tailwindcss/vite';
+import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()]
-  }
+  // 1. Aggiungi Tailwind tramite la sua integrazione ufficiale
+  integrations: [tailwind()],
+
+  // 2. Aggiungi le impostazioni per GitHub Pages
+  site: 'https://travy333.github.io',
+  base: '/',
 });
