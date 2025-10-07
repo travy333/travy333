@@ -33,14 +33,7 @@ if (imageUrl) {
   vengono gestiti dalla pagina che lo usa.
 -->
 
-<!-- Immagine Principale (opzionale) -->
-{imageUrl && (
-  <img 
-    src={finalImageUrl}
-    alt={`Screenshot del progetto ${title}`} 
-    class="w-1/4 h-auto rounded-lg mb-8 shadow-lg" 
-  />
-)}
+
 
 <!-- Titolo e Tags -->
 <div class="text-center mb-6">
@@ -76,6 +69,19 @@ if (imageUrl) {
     </a>
   )}
 </div>
+
+
+<!-- Immagine Principale (opzionale) -->
+{imageUrl && (
+  <img 
+    src={finalImageUrl}
+    alt={`Screenshot del progetto ${title}`} 
+    class="w-1/12 h-auto rounded-lg mb-8 shadow-lg items-center" 
+  />
+)}
+
+
+
 
 <style>
   /* Aggiungiamo uno stile per il pulsante secondario, se non esiste già */
