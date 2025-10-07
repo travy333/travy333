@@ -1,9 +1,9 @@
 ---
-// Definiamo le "props", ora con un array di stringhe per le immagini.
+
 export interface Props {
   title: string;
   description: string;
-  imagesUrls?: string[]; // Array di percorsi delle immagini (opzionale)
+  imagesUrls?: string[]; 
   repoUrl?: string;
   tags?: string[];
 }
@@ -11,13 +11,12 @@ export interface Props {
 const { 
   title, 
   description, 
-  imagesUrls = [], // Default a un array vuoto
+  imagesUrls = [], 
   repoUrl, 
   tags = [] 
 } = Astro.props;
 
-// Creiamo un nuovo array con i percorsi completi per ogni immagine.
-// Usiamo .map() per trasformare ogni elemento dell'array originale.
+
 const finalImageUrls = imagesUrls.map(
   (relativeUrl) => import.meta.env.BASE_URL + relativeUrl
 );

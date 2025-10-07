@@ -8,7 +8,7 @@ import ProjectPage from "../../components/ProjectPage.astro";
 const projectData = {
   title: "TravyPlay",
   description: "Media center in Flutter per gestire musica, video, IPTV e libri.",
-  // CORREZIONE: Ora è un array e il percorso non ha la barra iniziale
+
   imagesUrls: ["assets/img_main_travyplay.png","assets/img_main_travyplay2.png","assets/img_main_travyplay3.png"], 
   tags: ["Dart", "Flutter", "IOS", "Android"]
 };
@@ -17,11 +17,7 @@ const projectData = {
 <BaseLayout title={projectData.title}>
   <Fragment slot="header"><Header /></Fragment>
 
-  <!-- 
-    Qui richiami il componente riutilizzabile e gli passi i dati.
-    La sintassi `...projectData` è una scorciatoia per passare tutte le
-    proprietà dell'oggetto `projectData` in una volta sola.
-  -->
+ 
   <ProjectPage {...projectData} />
 
   <Fragment slot="footer"><Footer /></Fragment>
