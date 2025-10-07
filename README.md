@@ -12,10 +12,6 @@
 
 <table align="center" border="0" cellpadding="0" cellspacing="0">
   <tr align="center">
-    <td width="200" valign="middle">
-      <img src="assets/pp.jpg" alt="Foto Profilo di Travy" width="150" height="150" style="border-radius:50%; border:3px solid #56BB89;"/>
-    </td>
-    <td valign="middle">
       <blockquote>
         <h3>Credo nell'eleganza della semplicità per risolvere problemi complessi.</h3>
       </blockquote>
@@ -41,9 +37,7 @@
   </ul>
 </div>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/divider.svg" width="60%">
-</p>
+
 
 <div align="center">
   <h3>🚀 Il Mio Stack Tecnologico</h3>
@@ -57,9 +51,6 @@
   </p>
 </div>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/divider.svg" width="60%">
-</p>
 
 <div align="center">
   <h3>📊 Le Mie Statistiche su GitHub</h3>
@@ -68,6 +59,3 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs?username=travy333&layout=compact&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF" alt="Linguaggi più usati da travy333" />
 </div>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/travy333/travy333/output/github-contribution-grid-snake.svg" alt="Snake animation">
-</p>
