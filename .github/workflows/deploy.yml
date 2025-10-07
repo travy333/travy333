@@ -22,10 +22,22 @@ jobs:
       - name: Checkout your repository
         uses: actions/checkout@v4
 
-      - name: Install, build, and upload your site
-        uses: withastro/action@v2
-        # Non c'è bisogno di configurazione aggiuntiva perché i tuoi
-        # file sono nella root del progetto.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20" # Specifica una versione recente di Node.js
+          cache: "npm" # Abilita la cache per le dipendenze npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build your site
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   deploy:
     needs: build
