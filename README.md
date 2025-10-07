@@ -1,73 +1,43 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/travy333/travy333/main/assets/banner.gif" alt="Banner di Travy">
-</p>
+# Astro Starter Kit: Minimal
 
-<div align="center">
-  <h1 align="center">
-    <a href="https://git.io/typing-svg">
-      <img src="https://readme-typing-svg.herokuapp.com?font=Press+Start+2P&size=35&duration=2500&pause=500&color=56BB89&center=true&vCenter=true&width=400&lines=Travy;%3CCoder+%2F%3E" alt="Typing SVG">
-    </a>
-  </h1>
-</div>
+```sh
+npm create astro@latest -- --template minimal
+```
 
-<table align="center" border="0" cellpadding="0" cellspacing="0">
-  <tr align="center">
-    <td width="200" valign="middle">
-      <img src="assets/pp.jpg" alt="Foto Profilo di Travy" width="150" height="150" style="border-radius:50%; border:3px solid #56BB89;"/>
-    </td>
-    <td valign="middle">
-      <blockquote>
-        <h3>Credo nell'eleganza della semplicità per risolvere problemi complessi.</h3>
-      </blockquote>
-    </td>
-  </tr>
-</table>
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=travy333&label=Visite+Profilo&color=4CAF50&style=for-the-badge" alt="contatore visite profilo" />
-  <br><br>
-  <a href="https://www.instagram.com/antoniotraversadj/" target="_blank"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white&color=212121" alt="Instagram"></a>
-  <a href="https://www.linkedin.com/in/antoniotraversatravy/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&color=212121" alt="LinkedIn"></a>
-  <a href="mailto:capa909@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Email-Contattami-grey?style=for-the-badge&logo=gmail&logoColor=white&color=212121" alt="Email"></a>
-  <a href="https://travy333.github.io/TravyPlay_LandingPage/" target="_blank"><img src="https://img.shields.io/badge/Sito_Web-F7B23B?style=for-the-badge&logo=google-chrome&logoColor=black&color=56BB89" alt="Sito Web"></a>
-</p>
+## 🚀 Project Structure
 
-<div>
-  <h3>🌱 Attualmente sto approfondendo:</h3>
-  <ul>
-    <li><b>Java</b> per lo sviluppo <b>backend</b>.</li>
-    <li>Sviluppo App mobile con <b>Flutter</b> e <b>Dart</b>.</li>
-    <li><b>C++</b> in <b>Unreal Engine</b> per lo sviluppo di videogiochi e simulazioni.</li>
-  </ul>
-</div>
+Inside of your Astro project, you'll see the following folders and files:
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/divider.svg" width="60%">
-</p>
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-<div align="center">
-  <h3>🚀 Il Mio Stack Tecnologico</h3>
-  <p>
-    <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/></a>
-    <a href="https://isocpp.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/></a>
-    <a href="https://www.java.com" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/></a>
-    <a href="https://dart.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dart/dart-original.svg" alt="dart" width="40" height="40"/></a>
-    <a href="https://flutter.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/flutter/flutter-original.svg" alt="flutter" width="40" height="40"/></a>
-    <a href="https://www.w3.org/Style/CSS/Overview.en.html" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/></a>
-  </p>
-</div>
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/divider.svg" width="60%">
-</p>
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-<div align="center">
-  <h3>📊 Le Mie Statistiche su GitHub</h3>
-  <img src="https://github-readme-stats.vercel.app/api?username=travy333&show_icons=true&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF&icon_color=4CAF50" alt="Statistiche GitHub di travy333" />
-  <br><br>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=travy333&layout=compact&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF" alt="Linguaggi più usati da travy333" />
-</div>
+Any static assets, like images, can be placed in the `public/` directory.
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/travy333/travy333/output/github-contribution-grid-snake.svg" alt="Snake animation">
-</p>
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
