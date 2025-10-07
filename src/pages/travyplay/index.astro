@@ -8,7 +8,8 @@ import ProjectPage from "../../components/ProjectPage.astro";
 const projectData = {
   title: "TravyPlay",
   description: "Media center in Flutter per gestire musica, video, IPTV e libri.",
-  imageUrl: "/assets/img_main_travyplay.png", // Assicurati che questa immagine sia in /public/assets/
+  // CORREZIONE: Ora è un array e il percorso non ha la barra iniziale
+  imagesUrls: ["assets/img_main_travyplay.png","assets/img_main_travyplay2.png","assets/img_main_travyplay3.png"], 
   tags: ["Dart", "Flutter", "IOS", "Android"]
 };
 ---

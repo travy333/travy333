@@ -1,42 +1,30 @@
 ---
-// Definiamo le "props", ovvero i dati che ogni pagina passerà a questo componente.
+// Definiamo le "props", ora con un array di stringhe per le immagini.
 export interface Props {
   title: string;
   description: string;
-  imageUrl?: string; // L'immagine è opzionale
-  liveUrl?: string; // Anche il link al sito live è opzionale
-  repoUrl?: string; // E il link alla repo
-  tags?: string[]; // Una lista di tecnologie usate
+  imagesUrls?: string[]; // Array di percorsi delle immagini (opzionale)
+  repoUrl?: string;
+  tags?: string[];
 }
 
 const { 
   title, 
   description, 
-  imageUrl, 
-  liveUrl, 
+  imagesUrls = [], // Default a un array vuoto
   repoUrl, 
   tags = [] 
 } = Astro.props;
 
-// Uniamo semplicemente il BASE_URL con il percorso dell'immagine.
-// Per far funzionare questo, il percorso dell'immagine fornito nella pagina
-// del progetto NON deve iniziare con la barra '/'.
-let finalImageUrl = imageUrl;
-if (imageUrl) {
-  finalImageUrl = import.meta.env.BASE_URL + imageUrl;
-}
+// Creiamo un nuovo array con i percorsi completi per ogni immagine.
+// Usiamo .map() per trasformare ogni elemento dell'array originale.
+const finalImageUrls = imagesUrls.map(
+  (relativeUrl) => import.meta.env.BASE_URL + relativeUrl
+);
 ---
 
-<!-- 
-  Questo componente ora non ha più un contenitore esterno.
-  Renderizza solo i dati del progetto. Il layout e lo sfondo
-  vengono gestiti dalla pagina che lo usa.
--->
-
-
-
 <!-- Titolo e Tags -->
-<div class="text-center mb-6">
+<div class="text-center mb-6 mt-6">
   <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">
     {title}
   </h1>
@@ -56,35 +44,30 @@ if (imageUrl) {
   {description}
 </p>
 
-<!-- Pulsanti Call to Action (opzionali) -->
+<!-- Galleria di Immagini: in riga, centrata e con poco spazio -->
+{finalImageUrls.length > 0 && (
+  <div class="my-12 flex justify-center items-start gap-4 flex-wrap">
+    {finalImageUrls.map((url, index) => (
+      <img 
+        src={url}
+        alt={`Screenshot del progetto ${title} #${index + 1}`} 
+        class="max-w-[250px] h-auto rounded-lg shadow-xl" 
+      />
+    ))}
+  </div>
+)}
+
+<!-- Pulsanti Call to Action -->
 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-  {liveUrl && (
-    <a href={liveUrl} target="_blank" rel="noopener noreferrer" class="btn-primary text-center">
-      Visita il Sito
-    </a>
-  )}
   {repoUrl && (
     <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary text-center">
       Vedi il Codice
     </a>
   )}
-
-  <!-- Immagine Principale (opzionale) -->
-{imageUrl && (
-  <img 
-    src={finalImageUrl}
-    alt={`Screenshot del progetto ${title}`} 
-    class="w-1/6 h-auto rounded-lg mb-8 shadow-lg " 
-  />
-)}  
 </div>
 
-
-
-
-
 <style>
-  /* Aggiungiamo uno stile per il pulsante secondario, se non esiste già */
+  /* Stili esistenti... */
   .btn-secondary {
     display: inline-block;
     padding: var(--btn-padding);
