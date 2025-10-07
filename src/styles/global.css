@@ -2,32 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --- NUOVO SFONDO ANIMATO --- */
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.bg-dark-animated {
-  /* 1. Colori con più contrasto (dal blu scuro al viola) */
-  background: linear-gradient(-45deg, #111827, #1e1b4b, #312e81, #4338ca);
-  background-size: 400% 400%;
-  
-  /* 2. Animazione più veloce (15 secondi invece di 30) */
-  animation: gradientShift 15s ease infinite;
-}
-
-
-/* --- Le altre classi rimangono invariate --- */
-
 /* Animazioni */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -40,6 +14,76 @@
 
 .animate-fadeIn.delay-200 { animation-delay: 0.2s; }
 .animate-fadeIn.delay-400 { animation-delay: 0.4s; }
+
+/* --- NUOVO SFONDO ANIMATO "SOFT & SCROLL-REACTIVE" --- */
+
+@keyframes softDrift {
+  0% {
+    background-position: 0% 50%, 50% 50%, 100% 50%;
+  }
+  25% {
+    background-position: 20% 0%, 60% 40%, 80% 100%;
+  }
+  50% {
+    background-position: 50% 100%, 70% 0%, 50% 60%;
+  }
+  75% {
+    background-position: 100% 50%, 40% 80%, 0% 20%;
+  }
+  100% {
+    background-position: 0% 50%, 50% 50%, 100% 50%;
+  }
+}
+
+
+@keyframes slide {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.line-animated {
+  height: 2px;
+  background: linear-gradient(90deg, #5685bb, #81b9e6, #4179a7);
+  background-size: 200% 100%;
+  animation: slide 4s linear infinite;
+  border-radius: 1px;
+}
+
+
+.bg-dark-animated {
+  /* Strati di gradienti: base scura + due "nebulose" verdi molto soffici */
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(86, 187, 137, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(86, 187, 137, 0.06) 0%, transparent 50%),
+    linear-gradient(135deg, #101215, #0a0a0c);
+
+  /* Rende i gradienti molto grandi per un effetto soffice */
+  background-size: 200% 200%, 150% 150%, 100% 100%;
+
+  /* Applica l'animazione di movimento lento */
+  animation: softDrift 45s ease-in-out infinite;
+
+  /* --- LA PARTE CHIAVE PER REAGIRE ALLO SCROLL --- */
+  background-attachment: fixed;
+}
+
+.bg-split {
+  background: linear-gradient(to right, 
+    #111215 20%, 
+    #2c2d35 
+  );
+}
+
+.social-icons a {
+  font-size: 2rem;
+  margin: 0 10px;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #0073e6;
+}
 
 
 /* Utility for semi-transparent dark cards if needed */
@@ -58,7 +102,7 @@
 }
 
 .container-max {
-  max-width: 1200px;
+  max-width: 95%;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
