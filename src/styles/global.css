@@ -1,3 +1,78 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* --- NUOVO SFONDO ANIMATO --- */
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-dark-animated {
+  /* 1. Colori con più contrasto (dal blu scuro al viola) */
+  background: linear-gradient(-45deg, #111827, #1e1b4b, #312e81, #4338ca);
+  background-size: 400% 400%;
+  
+  /* 2. Animazione più veloce (15 secondi invece di 30) */
+  animation: gradientShift 15s ease infinite;
+}
+
+
+/* --- Le altre classi rimangono invariate --- */
+
+/* Animazioni */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.animate-fadeIn.delay-200 { animation-delay: 0.2s; }
+.animate-fadeIn.delay-400 { animation-delay: 0.4s; }
+
+
+/* Utility for semi-transparent dark cards if needed */
+.bg-card-dark {
+  background-color: rgba(17, 20, 24, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+/* Design tokens and utilities */
+:root{
+  --color-bg: #07070a;
+  --color-surface: #111215;
+  --color-primary: #56bb89;
+  --color-text: #e5e7eb;
+  --btn-padding: 0.75rem 1.5rem;
+}
+
+.container-max {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.btn-primary{
+  display:inline-block;
+  padding:var(--btn-padding);
+  background:var(--color-primary);
+  color:#08110a;
+  font-weight:600;
+  border-radius:0.5rem;
+  box-shadow: 0 8px 20px rgba(6,22,15,0.25);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn-primary:hover{ transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 40px rgba(6,22,15,0.3);}
