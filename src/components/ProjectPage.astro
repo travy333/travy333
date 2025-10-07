@@ -17,18 +17,25 @@ const {
   repoUrl, 
   tags = [] 
 } = Astro.props;
+
+// --- INIZIO MODIFICA ---
+// Costruiamo il percorso corretto per l'immagine, tenendo conto del "base" path
+// definito in astro.config.mjs.
+// `import.meta.env.BASE_URL` contiene il valore '/travy333/'
+let finalImageUrl = imageUrl;
+if (imageUrl && imageUrl.startsWith('/')) {
+  // Uniamo il base path con il percorso dell'immagine, rimuovendo eventuali doppi slash "//"
+  finalImageUrl = (import.meta.url + imageUrl.slice(1)).replace(/([^:]\/)\/+/g, "$1");
+}
+// --- FINE MODIFICA ---
 ---
 
-<!-- 
-  Questo componente ora non ha più un contenitore esterno.
-  Renderizza solo i dati del progetto. Il layout e lo sfondo
-  vengono gestiti dalla pagina che lo usa.
--->
+
 
 <!-- Immagine Principale (opzionale) -->
 {imageUrl && (
   <img 
-    src={imageUrl} 
+    src={finalImageUrl} 
     alt={`Screenshot del progetto ${title}`} 
     class="w-full h-auto rounded-lg mb-8 shadow-lg" 
   />
