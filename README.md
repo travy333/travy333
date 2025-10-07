@@ -25,7 +25,7 @@
   <a href="https://www.instagram.com/antoniotraversadj/" target="_blank"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white&color=212121" alt="Instagram"></a>
   <a href="https://www.linkedin.com/in/antoniotraversatravy/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&color=212121" alt="LinkedIn"></a>
   <a href="mailto:capa909@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Email-Contattami-grey?style=for-the-badge&logo=gmail&logoColor=white&color=212121" alt="Email"></a>
-  <a href="https://travy333.github.io/TravyPlay_LandingPage/" target="_blank"><img src="https://img.shields.io/badge/Sito_Web-F7B23B?style=for-the-badge&logo=google-chrome&logoColor=black&color=56BB89" alt="Sito Web"></a>
+  <a href="https://travy333.github.io/travy333/" target="_blank"><img src="https://img.shields.io/badge/Sito_Web-F7B23B?style=for-the-badge&logo=google-chrome&logoColor=black&color=56BB89" alt="Sito Web"></a>
 </p>
 
 <div>
