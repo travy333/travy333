@@ -12,6 +12,19 @@
   animation: fadeIn 0.8s ease forwards;
 }
 
+.animate-ping {
+  animation: ping 0.8s ease forwards;
+}
+
+.animate-bounce {
+  animation: bounce 1.0s ease backwards;
+}
+
+.animate-pulse {
+  animation: pulse 0.8s ease forwards;
+}
+
+
 .animate-fadeIn.delay-200 { animation-delay: 0.2s; }
 .animate-fadeIn.delay-400 { animation-delay: 0.4s; }
 
