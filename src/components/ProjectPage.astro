@@ -1,5 +1,5 @@
 ---
-
+// Definiamo le "props"
 export interface Props {
   title: string;
   description: string;
@@ -16,10 +16,30 @@ const {
   tags = [] 
 } = Astro.props;
 
-
 const finalImageUrls = imagesUrls.map(
   (relativeUrl) => import.meta.env.BASE_URL + relativeUrl
 );
+
+// Mappa per associare i nomi dei tag (in minuscolo) ai loro loghi.
+// In questo modo il sistema è flessibile.
+const iconMap: { [key: string]: string } = {
+  flutter: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/flutter.svg",
+  dart: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/dart.svg",
+  ios: "https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/apple.svg",
+  android: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/android.svg",
+  unrealengine: "https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/unrealengine.svg",
+  java: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/java.svg",
+  cplusplus: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/cplusplus.svg",
+  c: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/c.svg",
+  astro: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/astro.svg",
+  css: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/css3.svg",
+};
+
+// Funzione per trovare l'URL del logo corrispondente a un tag
+const getIconUrl = (tag: string) => {
+  const normalizedTag = tag.toLowerCase().replace(/\s+/g, ''); // Converte in minuscolo e rimuove spazi
+  return iconMap[normalizedTag];
+};
 ---
 
 <!-- Titolo e Tags -->
@@ -29,11 +49,16 @@ const finalImageUrls = imagesUrls.map(
   </h1>
   {tags.length > 0 && (
     <div class="flex flex-wrap gap-2 justify-center">
-      {tags.map(tag => (
-        <span class="bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full">
-          {tag}
-        </span>
-      ))}
+      {tags.map(tag => {
+        const iconUrl = getIconUrl(tag);
+        return (
+          <span class="bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5">
+            {/* Mostra l'icona solo se la troviamo nella nostra mappa */}
+            {iconUrl && <img src={iconUrl} alt={`${tag} logo`} class="h-3 w-3 invert" />}
+            {tag}
+          </span>
+        )
+      })}
     </div>
   )}
 </div>
