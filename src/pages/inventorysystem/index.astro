@@ -13,11 +13,15 @@ const projectData = {
 };
 ---
 
-<BaseLayout title={projectData.title}>
-  <Fragment slot="header"><Header /></Fragment>
 
+<BaseLayout title={projectData.title}>
+  <Fragment slot="header">
+  
+    <Header title={projectData.title} />
+  </Fragment>
 
   <ProjectPage {...projectData} />
 
   <Fragment slot="footer"><Footer /></Fragment>
 </BaseLayout>
+
