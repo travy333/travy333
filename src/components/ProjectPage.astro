@@ -1,11 +1,19 @@
 ---
-// Definiamo le "props"
+// Definiamo una struttura per le "feature"
+export interface Feature {
+  title: string;
+  description: string;
+  imageUrl: string; // Ogni feature avrà la sua immagine
+}
+
+// Aggiorniamo le props per includere l'array di feature
 export interface Props {
   title: string;
   description: string;
   imagesUrls?: string[]; 
   repoUrl?: string;
   tags?: string[];
+  features?: Feature[]; // Array di feature (opzionale)
 }
 
 const { 
@@ -13,31 +21,30 @@ const {
   description, 
   imagesUrls = [], 
   repoUrl, 
-  tags = [] 
+  tags = [],
+  features = [] // Default a un array vuoto
 } = Astro.props;
 
 const finalImageUrls = imagesUrls.map(
   (relativeUrl) => import.meta.env.BASE_URL + relativeUrl
 );
 
-// Mappa per associare i nomi dei tag (in minuscolo) ai loro loghi.
-// In questo modo il sistema è flessibile.
+// Mappa per associare i nomi dei tag ai loro loghi
 const iconMap: { [key: string]: string } = {
   flutter: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/flutter.svg",
   dart: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/dart.svg",
-  ios: "https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/apple.svg",
+  ios: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/apple.svg",
   android: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/android.svg",
-  unrealengine: "https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/unrealengine.svg",
+  unrealengine: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/unrealengine.svg",
   java: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/java.svg",
-  cplusplus: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/cplusplus.svg",
+  "c++": "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/cplusplus.svg",
   c: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/c.svg",
   astro: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/astro.svg",
   css: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/css3.svg",
 };
 
-// Funzione per trovare l'URL del logo corrispondente a un tag
 const getIconUrl = (tag: string) => {
-  const normalizedTag = tag.toLowerCase().replace(/\s+/g, ''); // Converte in minuscolo e rimuove spazi
+  const normalizedTag = tag.toLowerCase().replace(/\s+/g, '');
   return iconMap[normalizedTag];
 };
 ---
@@ -53,7 +60,6 @@ const getIconUrl = (tag: string) => {
         const iconUrl = getIconUrl(tag);
         return (
           <span class="bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5">
-            {/* Mostra l'icona solo se la troviamo nella nostra mappa */}
             {iconUrl && <img src={iconUrl} alt={`${tag} logo`} class="h-3 w-3 invert" />}
             {tag}
           </span>
@@ -68,7 +74,7 @@ const getIconUrl = (tag: string) => {
   {description}
 </p>
 
-<!-- Galleria di Immagini: in riga, centrata e con poco spazio -->
+<!-- Galleria di Immagini -->
 {finalImageUrls.length > 0 && (
   <div class="my-12 flex justify-center items-start gap-4 flex-wrap animate-fadeIn">
     {finalImageUrls.map((url, index) => (
@@ -81,8 +87,44 @@ const getIconUrl = (tag: string) => {
   </div>
 )}
 
+<!-- SEZIONE FEATURES INTERATTIVA (STILE ACCORDION) -->
+{features.length > 0 && (
+  <section class="features-section mt-16 md:mt-24 max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-primary text-center mb-12">
+      Caratteristiche Principali
+    </h2>
+    <div class="flex flex-col gap-4">
+      {features.map((feature) => {
+        const finalFeatureImageUrl = import.meta.env.BASE_URL + feature.imageUrl;
+        return (
+          // Usiamo 'group' per controllare l'hover sui figli
+          <div class="feature-item group bg-gray-900/50 border border-transparent rounded-lg p-6 transition-all duration-300 hover:border-primary/50 hover:bg-gray-900 cursor-pointer">
+            {/* Titolo sempre visibile */}
+            <h3 class="text-2xl font-bold text-gray-100 mb-2 transition-colors duration-300 group-hover:text-primary">
+              {feature.title}
+            </h3>
+            
+            {/* Contenuto che si espande al passaggio del mouse */}
+            <div class="expandable-content max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:max-h-[1000px] group-hover:opacity-100 group-hover:pt-4">
+              <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/3">
+                  <img src={finalFeatureImageUrl} alt={feature.title} class="rounded-lg shadow-2xl w-full" />
+                </div>
+                <div class="md:w-2/3 text-center md:text-left">
+                  <p class="text-gray-400 leading-relaxed">{feature.description}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  </section>
+)}
+
+
 <!-- Pulsanti Call to Action -->
-<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<div class="flex flex-col sm:flex-row gap-4 justify-center mt-16">
   {repoUrl && (
     <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary text-center">
       Vedi il Codice
@@ -91,7 +133,6 @@ const getIconUrl = (tag: string) => {
 </div>
 
 <style>
-  /* Stili esistenti... */
   .btn-secondary {
     display: inline-block;
     padding: var(--btn-padding);
@@ -106,5 +147,39 @@ const getIconUrl = (tag: string) => {
     background-color: var(--color-primary);
     color: var(--color-surface);
   }
+
+  /* Stili per l'animazione delle feature allo scroll */
+  .feature-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, border-color 0.3s, background-color 0.3s;
+  }
+  .feature-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
+
+<script>
+  // Script per l'animazione "on-scroll"
+  document.addEventListener('DOMContentLoaded', () => {
+    const featureItems = document.querySelectorAll('.feature-item');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          // Optional: smetti di osservare l'elemento una volta che è visibile
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1 // L'animazione parte quando il 10% dell'elemento è visibile
+    });
+
+    featureItems.forEach(item => {
+      observer.observe(item);
+    });
+  });
+</script>
 
