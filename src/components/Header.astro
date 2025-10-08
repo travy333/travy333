@@ -1,58 +1,129 @@
-<nav class="bg-black/60 backdrop-blur-md sticky top-0 z-50">
-  <div class="container-max flex justify-between items-center p-4 md:p-6">
-    <!-- Logo -->
-    <a href="https://antoniotraversa.github.io/antoniotraversa/" class="text-2xl font-bold text-primary">Profile</a>
+---
+// Il componente riceve il titolo della pagina corrente dalle props.
+export interface Props {
+  title?: string;
+}
+const { title } = Astro.props;
+
+// Recuperiamo il base URL per il link alla homepage e ai progetti.
+const baseUrl = import.meta.env.BASE_URL;
+const currentPath = Astro.url.pathname;
+
+// Controlliamo se siamo sulla homepage in modo più robusto, gestendo eventuali slash finali.
+const cleanPath = (path: string) => path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
+const isHomePage = cleanPath(currentPath) === cleanPath(baseUrl);
+
+
+const projects = [
+  { name: "TravyPlay", url: `${baseUrl}travyplay/` },
+  { name: "Altro Progetto", url: "#" },
+];
+---
+<header class="bg-black/60 backdrop-blur-md sticky top-0 z-50 border-b border-white/10">
+  <nav class="container-max flex justify-between items-center p-4 md:p-6">
+    <!-- Logo/Breadcrumb -->
+    <div class="text-2xl md:text-3xl font-bold">
+      {isHomePage ? (
+        <span class="text-primary">Portfolio</span>
+      ) : (
+        <a href={baseUrl} class="text-primary transition hover:text-white">Portfolio</a>
+      )}
+
+      {!isHomePage && title && (
+        <>
+          <span class="text-gray-500"> | </span>
+          <span class="text-gray-500">{title}</span>
+        </>
+      )}
+    </div>
 
     <!-- Menu Desktop -->
-    <ul class="hidden md:flex gap-6 text-gray-200">
-      <li><a href="#about" class="hover:text-primary transition-colors duration-300">About</a></li>
-      <li><a href="#projects" class="hover:text-primary transition-colors duration-300">Projects</a></li>
-      <li><a href="#stats" class="hover:text-primary transition-colors duration-300">Stats</a></li>
+    <ul class="hidden md:flex gap-8 text-gray-200 items-center">
+      <li><a href="#contacts" class="hover:text-primary transition-colors duration-300">Contacts</a></li>
+      
+      <!-- Menu a Tendina Progetti -->
+      <li class="relative" id="projects-dropdown-container">
+        <button id="projects-dropdown-btn" class="hover:text-primary transition-colors duration-300 flex items-center gap-1">
+          Projects
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+          </svg>
+        </button>
+        <div id="projects-dropdown-menu" class="absolute right-0 mt-2 w-48 bg-gray-900/80 backdrop-blur-lg border border-white/10 rounded-lg shadow-xl py-2 hidden">
+          {projects.map(project => (
+            <a href={project.url} class="block px-4 py-2 text-sm text-gray-300 hover:bg-primary hover:text-gray-900">{project.name}</a>
+          ))}
+        </div>
+      </li>
     </ul>
 
     <!-- Bottone Mobile -->
-    <button id="mobile-menu-btn" class="md:hidden text-gray-200 text-3xl focus:outline-none">☰</button>
-  </div>
+    <button id="mobile-menu-btn" class="md:hidden text-gray-200 text-3xl focus:outline-none z-20">☰</button>
+  </nav>
 
-  <!-- Menu Mobile -->
-  <div id="mobile-menu" class="md:hidden bg-black/80 backdrop-blur-md border-t border-gray-800 max-h-0 overflow-hidden transition-all duration-300">
-    <ul class="flex flex-col items-center gap-4 py-4 text-gray-200">
-      <li><a href="#about" class="hover:text-primary transition-colors duration-300">About</a></li>
-      <li><a href="#projectss" class="hover:text-primary transition-colors duration-300">Projects</a></li>
-      <li><a href="#contact" class="hover:text-primary transition-colors duration-300">Contatti</a></li>
-    </ul>
+  <!-- Menu Mobile (a comparsa) -->
+  <div id="mobile-menu" class="fixed inset-0 bg-black/90 backdrop-blur-lg hidden flex-col items-center justify-center gap-8 text-2xl text-gray-200">
+    <a href="#contacts" class="mobile-link">Contacts</a>
+    
+    <!-- Link Progetti Mobile -->
+    <div class="text-center">
+      <h3 class="text-primary mb-4">Projects</h3>
+      {projects.map(project => (
+        <a href={project.url} class="block py-2 text-xl mobile-link">{project.name}</a>
+      ))}
+    </div>
   </div>
-</nav>
+</header>
 
 <script>
-  // Assicurati che il DOM sia pronto
   document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('mobile-menu-btn');
-    const menu = document.getElementById('mobile-menu');
+    // --- Logica Dropdown Desktop ---
+    const dropdownContainer = document.getElementById('projects-dropdown-container');
+    const dropdownBtn = document.getElementById('projects-dropdown-btn');
+    const dropdownMenu = document.getElementById('projects-dropdown-menu');
 
-    // Controllo di sicurezza per TypeScript
-    if (btn && menu) {
-      btn.addEventListener('click', () => {
-        const isOpen = menu.classList.contains('max-h-0');
-        if (isOpen) {
-          menu.classList.remove('max-h-0');
-          menu.classList.add('max-h-60');
-          btn.textContent = '✕';
+    if (dropdownBtn && dropdownMenu && dropdownContainer) {
+      dropdownBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        dropdownMenu.classList.toggle('hidden');
+      });
+
+      // Chiudi il dropdown se si clicca fuori
+      document.addEventListener('click', (event) => {
+        // CORREZIONE: Aggiungiamo "as Node" per dire a TypeScript che questo è un elemento del DOM.
+        if (!dropdownContainer.contains(event.target as Node)) {
+          dropdownMenu.classList.add('hidden');
+        }
+      });
+    }
+
+    // --- Logica Menu Mobile ---
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileMenu.classList.remove('hidden');
+          mobileMenu.classList.add('flex');
+          mobileBtn.textContent = '✕';
         } else {
-          menu.classList.remove('max-h-60');
-          menu.classList.add('max-h-0');
-          btn.textContent = '☰';
+          mobileMenu.classList.add('hidden');
+          mobileMenu.classList.remove('flex');
+          mobileBtn.textContent = '☰';
         }
       });
 
-      // Chiudi il menu quando si clicca su un link
-      menu.querySelectorAll('a').forEach(link => {
+      // Chiudi il menu quando si clicca un link
+      mobileMenu.querySelectorAll('.mobile-link').forEach(link => {
         link.addEventListener('click', () => {
-          menu.classList.remove('max-h-60');
-          menu.classList.add('max-h-0');
-          btn.textContent = '☰';
+          mobileMenu.classList.add('hidden');
+          mobileMenu.classList.remove('flex');
+          mobileBtn.textContent = '☰';
         });
       });
     }
   });
 </script>
+
