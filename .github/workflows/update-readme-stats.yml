@@ -20,10 +20,10 @@ jobs:
         curl -o assets/github-stats.svg "https://github-readme-stats.vercel.app/api?username=antoniotraversa&show_icons=true&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF&icon_color=4CAF50&access_token=${{ secrets.GH_TOKEN }}"
         curl -o assets/github-langs.svg "https://github-readme-stats.vercel.app/api/top-langs/?username=antoniotraversa&layout=compact&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF&access_token=${{ secrets.GH_TOKEN }}"
 
-    - name: Commit e push
-      run: |
-        git config --global user.name "github-actions"
-        git config --global user.email "github-actions@github.com"
-        git add assets/github-stats.svg assets/github-langs.svg
-        git commit -m "Aggiorna badge GitHub Stats" || echo "Nessuna modifica"
-        git push
+  - name: Commit e push
+  run: |
+    git config --global user.name "github-actions"
+    git config --global user.email "github-actions@github.com"
+    git add assets/github-stats.svg assets/github-langs.svg
+    git commit -m "Aggiorna badge GitHub Stats" || echo "Nessuna modifica"
+    git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
