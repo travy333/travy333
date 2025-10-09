@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/travy333/travy333/main/assets/banner.gif" alt="Banner di Travy">
+  <img src="https://raw.githubusercontent.com/antoniotraversa/antoniotraversa/main/assets/banner.gif" alt="Banner di Travy">
 </p>
 
 <div align="center">
@@ -20,12 +20,12 @@
 </table>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=travy333&label=Visite+Profilo&color=4CAF50&style=for-the-badge" alt="contatore visite profilo" />
+  <img src="https://komarev.com/ghpvc/?username=antoniotraversa&label=Visite+Profilo&color=4CAF50&style=for-the-badge" alt="contatore visite profilo" />
   <br><br>
   <a href="https://www.instagram.com/antoniotraversadj/" target="_blank"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white&color=212121" alt="Instagram"></a>
   <a href="https://www.linkedin.com/in/antoniotraversatravy/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&color=212121" alt="LinkedIn"></a>
   <a href="mailto:capa909@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Email-Contattami-grey?style=for-the-badge&logo=gmail&logoColor=white&color=212121" alt="Email"></a>
-  <a href="https://travy333.github.io/travy333/" target="_blank"><img src="https://img.shields.io/badge/Sito_Web-F7B23B?style=for-the-badge&logo=google-chrome&logoColor=black&color=56BB89" alt="Sito Web"></a>
+  <a href="https://antoniotraversa.github.io/antoniotraversa/" target="_blank"><img src="https://img.shields.io/badge/Sito_Web-F7B23B?style=for-the-badge&logo=google-chrome&logoColor=black&color=56BB89" alt="Sito Web"></a>
 </p>
 
 <div>
@@ -54,8 +54,8 @@
 
 <div align="center">
   <h3>📊 Le Mie Statistiche su GitHub</h3>
-  <img src="https://github-readme-stats.vercel.app/api?username=travy333&show_icons=true&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF&icon_color=4CAF50" alt="Statistiche GitHub di travy333" />
+  <img src="https://github-readme-stats.vercel.app/api?username=antoniotraversa&show_icons=true&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF&icon_color=4CAF50" alt="Statistiche GitHub di Antonio Traversa" />
   <br><br>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=travy333&layout=compact&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF" alt="Linguaggi più usati da travy333" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=antoniotraversa&layout=compact&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF" alt="Linguaggi più usati da Antonio Traversa" />
 </div>
 
