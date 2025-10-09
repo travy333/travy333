@@ -33,3 +33,4 @@ jobs:
           else
             echo "Nessuna modifica da committare."
           fi
+
