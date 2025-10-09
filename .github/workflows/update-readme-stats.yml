@@ -8,6 +8,11 @@ on:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
+    
+    # ⬇️ STEP 1: Add this permissions block
+    # This grants the workflow permission to write to the repository.
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repo
@@ -16,15 +21,21 @@ jobs:
       - name: Genera badge GitHub Stats
         run: |
           mkdir -p assets
-          curl -o assets/github-stats.svg "https://github-readme-stats.vercel.app/api?username=antoniotraversa&show_icons=true&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF&icon_color=4CAF50&access_token=${{ secrets.GH_TOKEN }}"
-          curl -o assets/github-langs.svg "https://github-readme-stats.vercel.app/api/top-langs/?username=antoniotraversa&layout=compact&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF&access_token=${{ secrets.GH_TOKEN }}"
+          # Note: The token isn't strictly necessary for public stats, but can be added back
+          # using the built-in GITHUB_TOKEN if you encounter rate-limiting issues.
+          curl -o assets/github-stats.svg "https://github-readme-stats.vercel.app/api?username=antoniotraversa&show_icons=true&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF&icon_color=4CAF50"
+          curl -o assets/github-langs.svg "https://github-readme-stats.vercel.app/api/top-langs/?username=antoniotraversa&layout=compact&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF"
 
+      # ⬇️ STEP 2: Use a more robust commit and push step
       - name: Commit e push
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add assets/github-stats.svg assets/github-langs.svg
-          git commit -m "Aggiorna badge GitHub Stats" || echo "Nessuna modifica"
-          git push https://$PAT_TOKEN@github.com/${{ github.repository }}.git HEAD:main
-        env:
-          PAT_TOKEN: ${{ secrets.GH_TOKEN }}
+          # Commit only if there are changes
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "📈 Aggiorna badge GitHub Stats"
+            git push
+          else
+            echo "Nessuna modifica da committare."
+          fi
