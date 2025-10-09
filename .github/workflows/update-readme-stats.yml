@@ -1,9 +1,9 @@
 name: Aggiorna GitHub Stats
 
 on:
-  workflow_dispatch:   # lancio manuale
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # ogni giorno a mezzanotte (UTC)
+    - cron: '0 0 * * *'
 
 jobs:
   update-readme:
@@ -25,4 +25,6 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add assets/github-stats.svg assets/github-langs.svg
           git commit -m "Aggiorna badge GitHub Stats" || echo "Nessuna modifica"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          git push https://$PAT_TOKEN@github.com/${{ github.repository }}.git HEAD:main
+        env:
+          PAT_TOKEN: ${{ secrets.GH_TOKEN }}
