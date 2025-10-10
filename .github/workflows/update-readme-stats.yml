@@ -18,8 +18,10 @@ jobs:
       - name: Genera badge GitHub Stats
         run: |
           mkdir -p assets
-          curl -o assets/github-stats.svg "https://github-readme-stats.vercel.app/api?username=antoniotraversa&show_icons=true&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF&icon_color=4CAF50&count_private=true&access_token=${{ secrets.GH }}"
-          curl -o assets/github-langs.svg "https://github-readme-stats.vercel.app/api/top-langs/?username=antoniotraversa&layout=compact&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF&count_private=true&access_token=${{ secrets.GH }}"
+          # USA IL TUO NUOVO URL QUI
+          curl -o assets/github-stats.svg "https://github.com/antoniotraversa/github-readme-stats/api?username=antoniotraversa&show_icons=true&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF&icon_color=4CAF50&count_private=true"
+          # E ANCHE QUI
+          curl -o assets/github-langs.svg "https://github.com/antoniotraversa/github-readme-stats/api/top-langs/?username=antoniotraversa&layout=compact&locale=it&theme=gotham&bg_color=212121&title_color=F7B23B&text_color=FFFFFF&count_private=true"
 
       - name: Commit e push
         run: |
