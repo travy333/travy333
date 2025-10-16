@@ -9,7 +9,7 @@
         aria-labelledby="descId"
       >
         <title id="titleId">Statistiche GitHub di Antonio, Rank: C</title>
-        <desc id="descId">Stelle totali: 1, Commit totali  (L'anno scorso) : 51, PR totali: 0, Segnalazioni totali: 0, Ha contribuito a (l'anno scorso): 0</desc>
+        <desc id="descId">Stelle totali: 10, Commit totali  (L'anno scorso) : 58, PR totali: 0, Segnalazioni totali: 0, Ha contribuito a (l'anno scorso): 0</desc>
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
@@ -73,7 +73,7 @@
         stroke-dashoffset: 251.32741228718345;
       }
       to {
-        stroke-dashoffset: 244.1614202314759;
+        stroke-dashoffset: 231.1424857318433;
       }
     }
   
@@ -162,7 +162,7 @@
         x="219.01"
         y="12.5"
         data-testid="stars"
-      >1</text>
+      >10</text>
     </g>
   </g><g transform="translate(0, 25)">
     <g class="stagger" style="animation-delay: 600ms" transform="translate(25, 0)">
@@ -177,7 +177,7 @@
         x="219.01"
         y="12.5"
         data-testid="commits"
-      >51</text>
+      >58</text>
     </g>
   </g><g transform="translate(0, 50)">
     <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
